@@ -1,14 +1,25 @@
 import { useState } from 'react';
-import { Container, Typography, Button, TextField, makeStyles } from '@material-ui/core/'
+import {
+  Container,
+  Typography,
+  Button,
+  TextField,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormLabel,
+  FormControl,
+  makeStyles
+} from '@material-ui/core/';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
-const useStyles = makeStyles({ 
+const useStyles = makeStyles({
   field: {
     marginTop: 20,
     marginBottom: 20,
     display: 'block'
   }
-})
+});
 
 export default function Create() {
   const classes = useStyles();
@@ -16,17 +27,18 @@ export default function Create() {
   const [details, setDetails] = useState('');
   const [titleError, setTitleError] = useState(false);
   const [detailsError, setDetailsError] = useState(false);
+  const [category, setCategory] = useState('todos');
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setTitleError(false);
     setDetailsError(false);
-    if(title === '') setTitleError(true);
-    if(details === '') setDetailsError(true);
-    if(title && details){
-      console.log(title, details)
+    if (title === '') setTitleError(true);
+    if (details === '') setDetailsError(true);
+    if (title && details) {
+      console.log(title, details);
     }
-  }
+  };
   return (
     <Container>
       <Typography
@@ -39,7 +51,7 @@ export default function Create() {
         Create a New Note
       </Typography>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <TextField 
+        <TextField
           onChange={(e) => setTitle(e.target.value)}
           className={classes.field}
           label="Note Title"
@@ -49,7 +61,7 @@ export default function Create() {
           required
           error={titleError}
         />
-        <TextField 
+        <TextField
           onChange={(e) => setDetails(e.target.value)}
           className={classes.field}
           label="Details"
@@ -61,15 +73,32 @@ export default function Create() {
           rows={4}
           error={detailsError}
         />
-      <Button 
-        className={classes.btn}
-        endIcon={<KeyboardArrowRightIcon />}
-        type="submit" 
-        color="secondary" 
-        variant="contained">
+        <FormControl className={classes.field}>
+          <FormLabel>Note Category</FormLabel>
+          <RadioGroup
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <FormControlLabel control={<Radio />} label="Money" value="money" />
+            <FormControlLabel control={<Radio />} label="Todos" value="todos" />
+            <FormControlLabel
+              control={<Radio />}
+              label="Reminders"
+              value="reminders"
+            />
+            <FormControlLabel control={<Radio />} label="Work" value="work" />
+          </RadioGroup>
+        </FormControl>
+        <Button
+          className={classes.btn}
+          endIcon={<KeyboardArrowRightIcon />}
+          type="submit"
+          color="secondary"
+          variant="contained"
+        >
           Submit
-      </Button>
+        </Button>
       </form>
     </Container>
-  )
+  );
 }
