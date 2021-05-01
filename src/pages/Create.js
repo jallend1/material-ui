@@ -1,18 +1,7 @@
 import { Container, Typography, Button, makeStyles } from '@material-ui/core/'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
-const useStyles = makeStyles({
-  btn: {
-    fontSize: 60,
-    backgroundColor: 'violet',
-    '&:hover': {
-      backgroundColor: 'blue'
-    }
-  },
-  title: {
-    textDecoration: 'underline',
-    marginBottom: 20
-  }  
+const useStyles = makeStyles({ 
 })
 
 export default function Create() {
