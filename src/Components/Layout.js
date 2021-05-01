@@ -27,23 +27,30 @@ const Layout = ({ children }) => {
       path: '/create'
     }
   ];
-  const useStyles = makeStyles({
-    page: {
-      background: '#f9f9f9',
-      width: '100%'
-    },
-    drawer: {
-      width: drawerWidth
-    },
-    drawerPaper: {
-      width: drawerWidth
-    },
-    root: {
-      display: 'flex'
-    },
-    active: {
-      background: '#f4f4f4'
-    }
+
+  const useStyles = makeStyles((theme) => {
+    return {
+      page: {
+        background: '#f9f9f9',
+        width: '100%',
+        padding: theme.spacing(3)
+      },
+      drawer: {
+        width: drawerWidth
+      },
+      drawerPaper: {
+        width: drawerWidth
+      },
+      root: {
+        display: 'flex'
+      },
+      active: {
+        background: '#f4f4f4'
+      },
+      title: {
+        padding: theme.spacing(2)
+      }
+    };
   });
 
   const classes = useStyles();
@@ -57,7 +64,9 @@ const Layout = ({ children }) => {
         classes={{ paper: classes.drawerPaper }}
       >
         <div>
-          <Typography variant="h5">Notes</Typography>
+          <Typography variant="h5" className={classes.title}>
+            Notes
+          </Typography>
         </div>
         <List>
           {menuItems.map((item) => (
